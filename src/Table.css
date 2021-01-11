@@ -1,0 +1,28 @@
+.table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: scroll;
+    height: 400px;
+    background-color: white;
+    color: #6a5d5d;
+    counter-reset: rowNumber;
+}
+
+.table tr:nth-of-type(odd) {
+    background-color: #f3f2f8;
+}
+
+.table tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table tr::before {
+    counter-increment: rowNumber;
+    content: counter(rowNumber);
+}
+
+.table td {
+    padding: 0.5rem;
+}
