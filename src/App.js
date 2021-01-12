@@ -7,7 +7,7 @@ import "leaflet/dist/leaflet.css";
 import '../node_modules/leaflet/dist/leaflet.css'
 import Table from "./Table";
 import LineGraph from "./LineGraph";
-import { sortData } from "./util";
+import { sortData, prettyStat } from "./util";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -104,23 +104,27 @@ const onCountryChange = async (e) => {
             title="Coronavirus cases" 
             isRed
             active={casesType === "cases"}
-            total={countryInfo.cases} 
-            cases={countryInfo.todayCases} 
+            cases={prettyStat(countryInfo.todayCases)} 
+            total={prettyStat(countryInfo.cases)} 
+            
           />
           <InfoBox 
             onClick={(e) => setCasesType("recovered")} 
             title="Recovered" 
+            isGreen
             active={casesType === "recovered"}
-            total={countryInfo.recovered} 
-            cases={countryInfo.todayRecovered}
+            cases={prettyStat(countryInfo.todayRecovered)}
+            total={prettyStat(countryInfo.recovered)} 
+            
           />
           <InfoBox 
             onClick={(e) => setCasesType("deaths")}
             title="Deaths" 
-            isRed
+            isDeath
             active={casesType === "deaths"}
-            total={countryInfo.deaths} 
-            cases={countryInfo.todayDeaths}
+            cases={prettyStat(countryInfo.todayDeaths)}
+            total={prettyStat(countryInfo.deaths)} 
+            
           />
         </div>
         
@@ -139,8 +143,9 @@ const onCountryChange = async (e) => {
           <div className="app-data">
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
-            <h3>Worldwide new {casesType}</h3>
-            <LineGraph casesType={casesType}/>
+            <hr></hr>
+            <h3 style={{marginBottom:`20px`}}>Worldwide new {casesType}</h3>
+            <LineGraph className="app-graph" casesType={casesType}/>
           </div>
         </CardContent>
           {/* Table */}

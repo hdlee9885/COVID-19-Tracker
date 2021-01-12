@@ -1,8 +1,8 @@
 .table {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     overflow: scroll;
-    height: 43vh;
+    height: 50vh;
     background-color: white;
     color: #6a5d5d;
     counter-reset: rowNumber;

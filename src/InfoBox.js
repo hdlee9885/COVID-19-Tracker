@@ -3,14 +3,23 @@ import React from 'react'
 import './InfoBox.css'
 
 
-function InfoBox({ title, cases, total }) {
+function InfoBox({ title, cases, total, isRed, isGreen, isDeath, active, ...props }) {
     return (
-        <Card className="infoBox">
+        <Card
+            onClick={ props.onClick } 
+            className={`infoBox ${active && "infoBox--selected"} 
+                        ${isRed && "infoBox--isBorderRed"}
+                        ${isGreen && "infoBox--isBorderGreen"}
+                        ${isDeath && "infoBox--isBorderGrey"}`}
+        >
             <CardContent className="infoBox-title">
                 {/* Title */}
-                <Typography color="textSecondary">{title}</Typography>
+                <Typography gutterBottom>{title}</Typography>
                 {/* +120k number of cases */}
-                <h2 className="infoBox-cases">{cases}</h2>
+                <h2 className={`infoBox-cases 
+                                ${isRed && "infoBox--isRed"} 
+                                ${isGreen && "infoBox--isGreen"}
+                                ${isDeath && "infoBox--isGrey"}`}>{cases}</h2>
                 {/* 1.2M total */}
                 <Typography className="infoBox-total">{total} Total</Typography>
             </CardContent>

@@ -1,0 +1,52 @@
+.infoBox {
+    flex: 1;
+    cursor: pointer;
+}
+
+.infoBox:not(:last-child) {
+    margin-right: 15px;
+}
+
+.infoBox--selected {
+    border-top: 10px solid rgb(47, 255, 57);
+    transition: all 0.5s ease-out;
+}
+
+.infoBox--isBorderRed {
+    border-color: #cc1034;
+    transition: all 0.5s ease;
+}
+
+.infoBox--isBorderGreen {
+    border-color: rgb(24, 211, 33);
+}
+
+.infoBox--isBorderGrey {
+    border-color: grey;
+}
+
+.infoBox--isRed {
+    color: #cc1034 !important;
+}
+
+.infoBox--isGreen {
+    color: rgb(24, 211, 33) !important;
+}
+
+.infoBox--isGrey {
+    color: grey !important;
+}
+
+.infoBox-cases {
+    color: #cc1034;
+    font-weight: 600;
+    font-size: 1.75em;
+    margin-bottom: 0.5rem;
+}
+
+.infoBox-total {
+    color: #6c757d;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    margin-top: 10px !important;
+}
