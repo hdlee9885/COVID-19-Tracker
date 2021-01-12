@@ -70,9 +70,14 @@ function App() {
         setCountry(countryCode);
         setCountryInfo(data);
         console.log(mapCenter)
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        console.log(mapCenter)
-        setMapZoom(4);
+        if (countryCode === "Worldwide") {
+          setMapCenter([34.80746, -40.4796]);
+          setMapZoom(3);
+        } else {
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(5);
+        }
+        
       });
   };
 
