@@ -101,20 +101,23 @@ function App() {
         {/* Title + Select input */}
         <div className="app-header">
           <h1>COVID-19 Tracker</h1>
-          <FormControl className="app-dropdown">
-            <Select 
-              variant="outlined" 
-              value={country} 
-              onChange={onCountryChange}
-            >
-              <MenuItem value="Worldwide">Worldwide</MenuItem>
-              {
-                countries.map(country => (
-                  <MenuItem value={country.value}>{country.name}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+          <div className="app-region">
+            <p>Select a region &nbsp;</p>
+            <FormControl className="app-dropdown">
+              <Select 
+                variant="outlined" 
+                value={country} 
+                onChange={onCountryChange}
+              >
+                <MenuItem value="Worldwide">Worldwide</MenuItem>
+                {
+                  countries.map(country => (
+                    <MenuItem value={country.value}>{country.name}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
+          </div>
         </div>
 
         <div className="app-stats">
