@@ -14,7 +14,7 @@ function InfoBox({ title, cases, total, isRed, isGreen, isDeath, active, ...prop
         >
             <CardContent className="infoBox-title">
                 {/* Title */}
-                <Typography gutterBottom>{title}</Typography>
+                <Typography>{title}</Typography>
                 {/* +120k number of cases */}
                 <h2 className={`infoBox-cases 
                                 ${isRed && "infoBox--isRed"} 

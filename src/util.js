@@ -13,7 +13,7 @@ const casesTypeColors = {
       hex: "#7dd71d",
       rgb: "rgb(24, 211, 33)",
       half_op: "rgba(125, 215, 29, 0.5)",
-      multiplier: 400,
+      multiplier: 300,
     },
     deaths: {
       hex: "#fb4443",
@@ -21,7 +21,7 @@ const casesTypeColors = {
       half_op: "rgba(251, 68, 67, 0.5)",
       multiplier: 900,
     },
-  };
+};
 
 export const sortData = (data) => {
     const sortedData = [...data];

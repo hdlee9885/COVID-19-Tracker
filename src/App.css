@@ -40,6 +40,12 @@ fieldset.MuiFormControl-root {
   width: 100%;
 }
 
+legend.MuiFormLabel-root {
+  font-style: italic;
+  font-style: 0.6rem;
+  margin: auto;
+}
+
 .app-graph {
   flex-grow: 1;
 }
@@ -47,12 +53,21 @@ fieldset.MuiFormControl-root {
 .app-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   align-items: center;
 }
 
 .app-dropdown {
   background-color: white;
+  border-radius: 15px;
+}
+
+.app-dropdown .MuiOutlinedInput-root {
+  border-radius: 15px;
+}
+
+.app-dropdown .MuiOutlinedInput-root .MuiSelect-outlined {
+  border-radius: 15px;
 }
 
 .app-data > hr {

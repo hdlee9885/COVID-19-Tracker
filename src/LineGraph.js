@@ -48,6 +48,24 @@ const options = {
     },
 };
 
+const casesTypeColors = {
+    cases: {
+      hex: "#CC1034",
+      rgb: "rgb(204, 16, 52)",
+      half_op: "rgba(204, 16, 52, 0.5)",
+    },
+    recovered: {
+      hex: "#7dd71d",
+      rgb: "rgb(24, 211, 33)",
+      half_op: "rgba(125, 215, 29, 0.5)",
+    },
+    deaths: {
+      hex: "#fb4443",
+      rgb: "rgb(128, 128, 128)",
+      half_op: "rgba(128, 128, 128, 0.5)",
+    },
+};
+
 const buildChartData = (data, casesType) => {
     const chartData = [];
     let lastDataPoint;
@@ -92,8 +110,8 @@ function LineGraph({ days, casesType = 'cases', ...props }) {
               data={{
                 datasets: [
                   {
-                    backgroundColor: "rgba(204, 16, 52, 0.5)",
-                    borderColor: "#CC1034",
+                    backgroundColor: casesTypeColors[casesType].half_op,
+                    borderColor: casesTypeColors[casesType].rgb,
                     data: data,
                   },
                 ],

@@ -107,7 +107,7 @@ function App() {
           {/* Info Boxes x3 */}
           <InfoBox 
             onClick={(e) => setCasesType("cases")} 
-            title="Coronavirus cases" 
+            title="New cases" 
             isRed
             active={casesType === "cases"}
             cases={prettyStat(countryInfo.todayCases)} 
@@ -150,9 +150,9 @@ function App() {
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
             <hr></hr>
-            <h3 style={{marginBottom:`20px`}}>Worldwide new {casesType}</h3>
+            <h3 style={{marginBottom:`15px`}}>Worldwide new {casesType}</h3>
             <FormControl component="fieldset">
-              <FormLabel component="legend">Days</FormLabel>
+              <FormLabel component="legend">*Select Days</FormLabel>
               <RadioGroup className="radio-group" row aria-label="gender" name="gender1" value={days} onChange={onRadioChange}>
                 <FormControlLabel value="30" control={<Radio />} label="30" />
                 <FormControlLabel value="60" control={<Radio />} label="60" />
