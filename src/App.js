@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, FormControl, MenuItem, Select } from '@material-ui/core';
+import { Card, CardContent, FormControl, MenuItem, Select, FormLabel, RadioGroup, Radio, FormControlLabel } from '@material-ui/core';
 import './App.css';
 import InfoBox from "./InfoBox";
 import Map from "./Map";
@@ -8,6 +8,7 @@ import '../node_modules/leaflet/dist/leaflet.css'
 import Table from "./Table";
 import LineGraph from "./LineGraph";
 import { sortData, prettyStat } from "./util";
+import { onRadioChange } from './LineGraph'
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -18,6 +19,7 @@ function App() {
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const [days, setDays] = useState('30');
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -54,25 +56,29 @@ function App() {
     getCountriesData();
   }, []);
 
-const onCountryChange = async (e) => {
-  // grab the selected value from the dropdown
-  const countryCode = e.target.value;
+  const onCountryChange = async (e) => {
+    // grab the selected value from the dropdown
+    const countryCode = e.target.value;
 
-  const url =
-    countryCode === "Worldwide"
-      ? "https://disease.sh/v3/covid-19/all"
-      : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
-  await fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      setCountry(countryCode);
-      setCountryInfo(data);
-      console.log(mapCenter)
-      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-      console.log(mapCenter)
-      setMapZoom(4);
-    });
-};
+    const url =
+      countryCode === "Worldwide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+        console.log(mapCenter)
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        console.log(mapCenter)
+        setMapZoom(4);
+      });
+  };
+
+  const onRadioChange = (event) => {
+    setDays(event.target.value);
+  }
 
   return (
     <div className="app">
@@ -145,7 +151,17 @@ const onCountryChange = async (e) => {
             <Table countries={tableData} />
             <hr></hr>
             <h3 style={{marginBottom:`20px`}}>Worldwide new {casesType}</h3>
-            <LineGraph className="app-graph" casesType={casesType}/>
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Days</FormLabel>
+              <RadioGroup className="radio-group" row aria-label="gender" name="gender1" value={days} onChange={onRadioChange}>
+                <FormControlLabel value="30" control={<Radio />} label="30" />
+                <FormControlLabel value="60" control={<Radio />} label="60" />
+                <FormControlLabel value="120" control={<Radio />} label="120" />
+                <FormControlLabel value="360" control={<Radio />} label="360" />
+              </RadioGroup>
+            </FormControl>
+            
+            <LineGraph className="app-graph" days={days} casesType={casesType}/>
           </div>
         </CardContent>
           {/* Table */}

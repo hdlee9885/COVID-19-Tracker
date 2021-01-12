@@ -32,6 +32,14 @@ body {
   flex-grow: 1;
 }
 
+.radio-group {
+  margin: auto;
+}
+
+fieldset.MuiFormControl-root {
+  width: 100%;
+}
+
 .app-graph {
   flex-grow: 1;
 }
