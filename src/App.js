@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { Card, CardContent, FormControl, MenuItem, Select, FormLabel, RadioGroup, Radio, FormControlLabel } from '@material-ui/core';
 import './App.css';
 import InfoBox from "./InfoBox";
@@ -8,7 +9,6 @@ import '../node_modules/leaflet/dist/leaflet.css'
 import Table from "./Table";
 import LineGraph from "./LineGraph";
 import { sortData, prettyStat } from "./util";
-import { onRadioChange } from './LineGraph'
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -85,8 +85,17 @@ function App() {
     setDays(event.target.value);
   }
 
+  const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
   return (
     <div className="app">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>COVID-19 TRACKER</title>
+      </Helmet>
       <div className="app-left">
         {/* Header */}
         {/* Title + Select input */}
@@ -155,7 +164,7 @@ function App() {
             <h3>Live Cases by Country</h3>
             <Table countries={tableData} />
             <hr></hr>
-            <h3 style={{marginBottom:`15px`}}>Worldwide new {casesType}</h3>
+            <h3 style={{marginBottom:`15px`}}>{country} New {capitalize(casesType)} Trends</h3>
             <FormControl component="fieldset">
               <FormLabel component="legend">*Select Days</FormLabel>
               <RadioGroup className="radio-group" row aria-label="gender" name="gender1" value={days} onChange={onRadioChange}>
@@ -166,7 +175,7 @@ function App() {
               </RadioGroup>
             </FormControl>
             
-            <LineGraph className="app-graph" days={days} casesType={casesType}/>
+            <LineGraph className="app-graph" days={days} casesType={casesType} country={country}/>
           </div>
         </CardContent>
           {/* Table */}
