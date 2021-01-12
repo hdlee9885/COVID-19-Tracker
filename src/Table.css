@@ -2,7 +2,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: scroll;
-    height: 400px;
+    height: 43vh;
     background-color: white;
     color: #6a5d5d;
     counter-reset: rowNumber;
@@ -13,12 +13,12 @@
 }
 
 .table tr {
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
     align-items: center;
 }
 
-.table tr::before {
+.table tr td:first-child::before {
     counter-increment: rowNumber;
     content: counter(rowNumber);
 }
