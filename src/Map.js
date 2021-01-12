@@ -1,12 +1,23 @@
-import React from 'react'
-import './Map.css'
+import React from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
+import "./Map.css";
+import { showDataOnMap } from "./util";
+import ChangeView from './ChangeView'
 
-function Map() {
+function Map({ countries, casesType, center, zoom }) {
+    console.log(center, zoom)
     return (
         <div className="map">
-            <h1>I am a Map</h1>
+            <MapContainer center={center} zoom={zoom} preferCanvas={true} attributionControl={false}>
+                <ChangeView center={center} zoom={zoom} /> 
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    {showDataOnMap(countries, casesType)}
+            </MapContainer>
         </div>
-    )
+    );
 }
 
-export default Map
+export default Map;
